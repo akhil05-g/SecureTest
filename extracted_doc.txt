@@ -1,0 +1,238 @@
+ProctorIQ
+AI-Powered Assessment Integrity Engine
+Monitor everyone. Review only the suspicious few.
+1. Executive Summary
+ProctorIQ is a company-facing AI-powered assessment integrity platform for organizations conducting large-scale online coding, aptitude, technical, and recruitment assessments. Its primary users are HR teams, assessment leads, and authorized reviewers. Candidates experience the normal assessment interface, while the internal integrity engine analyzes permitted monitoring signals in the background.
+The core problem is scale: hundreds or thousands of candidates can generate thousands of monitoring events and hours of recordings. ProctorIQ detects events, assigns confidence and severity, correlates behavior over time, calculates cumulative risk, applies configurable thresholds, and stores relevant evidence so the lead can focus on the small number of sessions requiring attention.
+2. Problem Statement
+HR and assessment leads cannot realistically watch complete recordings for every candidate.
+Individual alerts can create alert fatigue and lack context.
+A single harmless event should not automatically be treated as cheating.
+Repeated or combined events can be more meaningful than isolated events.
+Reviewers need exact timestamps and evidence when investigating a flag.
+Different assessments require different integrity policies and thresholds.
+3. Product Concept
+ProctorIQ changes the workflow from 'detect everything and make HR review everything' to 'monitor everyone, intelligently prioritize the suspicious few.' It is an assessment-integrity intelligence layer rather than simply another webcam recorder.
+The system converts monitoring signals into structured events, correlates them, computes a risk score, and escalates candidates who cross a configurable threshold. The lead receives a concise evidence timeline rather than searching through an entire recording.
+4. Difference From Existing Proctoring
+Typical / Existing Approach
+ProctorIQ
+Detect isolated suspicious events
+Correlate multiple signals across time
+Generate many alerts
+Generate a cumulative candidate risk score
+HR inspects long sessions
+Prioritize only high-risk candidates
+Isolated alerts can cause noise
+Use severity, confidence, repetition, duration and context
+Evidence can be difficult to locate
+Timestamped incident timeline with direct evidence access
+Monitoring is the main focus
+Reducing investigation workload is the main goal
+Fixed/simple rules
+Configurable thresholds and event weights
+Limited explanation
+Show confidence, contributing events, timeline and audit trail
+5. Candidate-Side Experience
+The candidate-facing experience remains focused on taking the assessment. Internal monitoring analytics, risk scores, detection details, and the HR dashboard are not exposed as part of the candidate workflow. Monitoring permissions and organizational policies still need to be handled transparently and lawfully by the company.
+6. Detection Signals
+Face presence and temporary face absence.
+Multiple-person / multiple-face detection.
+Repeated gaze or head-position deviations.
+Potential phone or prohibited-object detection.
+Tab/window switching and fullscreen exits where technically and legally permitted.
+Suspicious audio or external voice activity.
+Relevant screen activity and anomaly signals.
+Assessment-specific events that can be added later.
+Each detector produces a signal rather than a final cheating verdict. Events should contain candidate ID, assessment ID, timestamp, duration, event type, severity, confidence, and evidence reference where applicable.
+7. Confidence vs. Risk
+ProctorIQ separates detector confidence from overall candidate risk. A detector can be highly confident that an object resembles a phone, while overall risk still depends on other events and context.
+Detection confidence: confidence of a specific model/detector.
+Event severity: importance under the assessment policy.
+Cumulative risk: combined score based on events and context.
+Threshold status: whether configured action conditions are met.
+8. Cumulative Risk Engine
+The risk engine considers severity, confidence, repetition, duration, timing, and combinations of independent signals. A simplified conceptual model is: Risk Score = Σ(event severity × detection confidence) + repetition/context adjustments.
+One tab switch may have low impact. Repeated tab switching combined with phone detection, multiple-face detection, and external voice activity should substantially increase risk. Exact weights are intentionally not finalized and should be configurable.
+9. Automatic Threshold and Flagging
+A configurable threshold lets the system automatically escalate a candidate without requiring the lead to inspect every event. For example, if the threshold is 70, crossing it can move the candidate into a high-risk or auto-flagged state according to the organization's policy.
+Normal: low accumulated risk.
+Suspicious: unusual activity requiring prioritization.
+High Risk: cumulative score is high.
+Auto-Flagged: configured threshold and conditions are satisfied.
+Human Override: authorized lead can confirm, dismiss, or override where policy requires it.
+For responsible deployment, automated flags should be treated as integrity actions or disqualification recommendations unless organizational policy and applicable rules explicitly allow automated enforcement. Audit trails should be preserved.
+10. Cloud Evidence Storage
+Relevant evidence is stored securely in the cloud so the assessment lead can investigate a specific event without reviewing the entire session.
+Candidate and assessment identifiers.
+Timestamp and duration.
+Event type, severity, and confidence.
+Relevant screen snapshot or evidence segment.
+Relevant webcam segment where permitted.
+Relevant audio segment where permitted.
+Nearby event sequence for context.
+Risk score before and after the event.
+Model/policy version used.
+Production storage should use strong access control, encryption, retention policies, and audit logging. The cloud provider is intentionally not finalized.
+11. Evidence Timeline
+A central UI concept is a timeline of meaningful incidents rather than a long recording as the primary interface.
+Example: 00:14:21 Tab switch; 00:22:47 Face absent; 00:31:09 Multiple faces; 00:45:17 Phone detected; 01:02:44 Tab switch; 01:14:32 Threshold crossed.
+Selecting an incident should take the reviewer directly to the corresponding evidence window and show confidence, severity, risk contribution, and context.
+12. HR / Assessment Lead Dashboard
+Total candidates and assessment completion status.
+Normal, suspicious, high-risk, and auto-flagged counts.
+Candidate ranking by risk score.
+Top incidents and severity.
+Detection confidence values.
+Incident timeline and relevant evidence.
+Reasons for risk increases.
+Confirm, dismiss, review, or override actions.
+Audit history.
+Illustrative demo: 1,000 candidates → 824 normal → 143 suspicious → 33 auto-flagged.
+13. End-to-End Workflow
+Company creates an assessment.
+Lead configures integrity rules and thresholds.
+Candidates take the normal online assessment.
+Permitted monitoring signals are collected.
+Detection services identify events.
+Events are normalized with confidence, severity, timestamp, and duration.
+Correlation evaluates repetition, timing, and combinations.
+Risk engine updates the cumulative score.
+Threshold engine escalates candidates when conditions are met.
+Relevant evidence is securely stored.
+Dashboard prioritizes candidates requiring attention.
+Authorized reviewers inspect evidence and record decisions.
+14. High-Level Architecture
+The technology stack is deliberately not finalized.
+Conceptual flow: Candidate Assessment → Monitoring/Event Collection → Detection Services → Event Normalization → Event Correlation → Risk/Threshold Engine → Evidence Storage → HR/Lead Dashboard.
+The system should remain modular so AI models, databases, cloud services, and application frameworks can be changed later.
+15. Hackathon MVP
+Working assessment interface.
+Focused set of demonstrable monitoring signals.
+Event generation with timestamp, confidence, severity, and candidate ID.
+Cumulative risk scoring.
+Configurable violation threshold.
+Automatic high-risk / auto-flagged state.
+Cloud-backed evidence storage for selected incidents.
+HR dashboard with risk ranking.
+Clickable evidence timeline.
+Audit trail explaining risk changes.
+Prioritize a polished end-to-end demonstration over implementing every possible detector.
+16. Hackathon Demo Story
+Simulate a company conducting a large online assessment. Normal candidates generate ordinary events while a smaller set generates repeated or correlated suspicious events. The dashboard updates risk scores.
+At the end, the lead sees only the high-risk group. Open one candidate, show the cumulative risk and detector confidence values, click an incident on the timeline, and immediately display the relevant evidence.
+Core story: 1,000 candidates → thousands of raw events → a small number of high-risk candidates → targeted evidence review.
+17. Why It Is Hackathon-Strong
+Clear business problem with measurable review-time reduction.
+Combines AI detection, multimodal event processing, risk analytics, cloud evidence, and enterprise workflow.
+The core innovation is event correlation and intelligent triage, not merely object detection.
+The demo is visual and immediately understandable.
+The architecture can scale into a production assessment-integrity platform.
+LatentCode accelerates implementation while the stack remains open.
+18. LatentStack / LatentCode Hackathon Role
+LatentStack provides the LatentCode terminal coding agent and LatentCode editor extension. For this project, LatentCode is intended to be the primary development and coding-assistance layer during the hackathon.
+The correct workflow is not to ask the agent to generate the whole product immediately. First provide the complete ProctorIQ requirements, request a technology-agnostic architecture, review the modules and MVP, then approve the project structure and implementation plan.
+Create a dedicated ProctorIQ workspace.
+Launch LatentCode from the project environment.
+Give LatentCode the full requirements and constraints.
+Request architecture, modules, data flow, MVP, risks, and demo plan.
+Review the proposal before selecting the technology stack.
+After approval, create the project structure.
+Implement and test modules incrementally.
+Use LatentCode for coding, debugging, refactoring, tests, documentation, and integration.
+Keep README/project history clear so the hackathon can demonstrate how LatentCode accelerated development.
+The final stack, models, database, cloud provider, and frameworks remain open until the architecture review.
+19. SkillPatch Role
+SkillPatch is an agent-skill registry and lifecycle platform. Based on the supplied documentation, it supports discovering skills, reviewing SKILL.md and files, installing skills, publishing skills, immutable version history, suggestions, private sharing, team collaboration, forking, and GitHub integration.
+SkillPatch can complement LatentCode by giving the team reusable agent capabilities instead of relying on one large prompt for every engineering task.
+20. SkillPatch Workflow for ProctorIQ
+Browse the SkillPatch catalog for useful reusable skills.
+Review a skill's documentation, files, ratings, and security indicators before installation.
+Install useful skills through the agent using /skillpatch install <slug>.
+Create ProctorIQ-specific skills for repeated engineering tasks.
+Use versioning so improvements do not destroy older working versions.
+Use /skillpatch suggest <slug> for improvements to existing skills.
+Use private skills and team sharing for internal workflows.
+Fork a suitable existing skill when it is close to the required capability.
+Publish useful project skills when they are mature enough to share.
+21. SkillPatch Commands
+Command
+Purpose
+/skillpatch browse [query]
+Search the catalog
+/skillpatch install <slug>
+Install a reusable skill
+/skillpatch save
+Publish the skill being developed
+/skillpatch suggest <slug>
+Suggest an improvement
+/skillpatch my-skills
+List owned skills
+/skillpatch rate <slug>
+Rate a skill
+22. Potential ProctorIQ Agent Skills
+proctoriq-event-schema: generate and validate normalized event schemas.
+proctoriq-risk-engine: implement and test configurable risk rules.
+proctoriq-evidence-review: create evidence metadata and timeline structures.
+proctoriq-dashboard: scaffold consistent HR dashboard components.
+proctoriq-test-generator: generate unit/integration tests for event and risk logic.
+proctoriq-security-review: check evidence access, authorization, retention, and audit requirements.
+proctoriq-demo-data: generate realistic synthetic candidate/event data for the hackathon.
+These are proposed custom skill concepts, not claims that these skills already exist on SkillPatch. Existing skills should be discovered first.
+23. LatentCode + SkillPatch Combined Workflow
+The combination can become part of the hackathon engineering story: LatentCode acts as the primary coding agent, while SkillPatch supplies reusable capabilities. The team can discover or install existing skills, create ProctorIQ-specific skills for repeated tasks, validate the results, and publish useful skills for reuse.
+This demonstrates not only the product being built, but also an agent-assisted development workflow based on reusable, versioned skills.
+24. Trust, Privacy, Security and Auditability
+Treat AI detections as probabilistic signals, not unquestionable truth.
+Keep detection confidence separate from overall risk.
+Support authorized human review/override for high-impact decisions according to policy.
+Restrict evidence access to authorized personnel.
+Encrypt evidence and apply retention rules.
+Provide required notices and permissions.
+Evaluate false positives and fairness.
+Record model and policy versions for incident reconstruction.
+Use synthetic data for the hackathon demo wherever real candidate data is unnecessary.
+25. Future Scope
+Advanced multimodal correlation.
+Assessment-specific integrity policies.
+Large-scale distributed event processing.
+Real-time critical-incident notifications.
+Model performance, drift, and false-positive analytics.
+Enterprise assessment-platform integrations.
+Advanced evidence search and incident clustering.
+Private organization skill libraries through SkillPatch.
+A reusable ProctorIQ agent-skill ecosystem.
+26. One-Line Pitch
+ProctorIQ monitors every online assessment session, intelligently correlates suspicious behavior, and reduces thousands of candidate events into a small, prioritized set of evidence-backed cases for HR and assessment leads.
+27. Hackathon Application Description
+We’ll build an AI-powered Assessment Integrity Engine for companies conducting large-scale online assessments. Unlike existing proctoring systems that primarily generate isolated alerts and leave HR teams to review long recordings, ProctorIQ correlates webcam, screen, browser, and audio signals into cumulative risk scores with configurable violation thresholds. Significant incidents are confidence-scored, timestamped, and securely stored as evidence, allowing assessment leads to review only the highest-risk candidates and jump directly to where suspicious behavior occurred. LatentCode will accelerate development of the real-time detection, event-correlation, risk-scoring, and evidence pipeline, while SkillPatch can provide reusable agent skills and a path for us to create and share ProctorIQ-specific development capabilities.
+28. Current Decisions vs. Open Decisions
+Already Decided
+Not Yet Finalized
+B2B company assessment use case
+Final technology stack
+HR / assessment lead as primary user
+Specific AI models
+Candidate does not see internal risk analytics
+Specific cloud provider
+Multimodal detection concept
+Exact database
+Cumulative risk + configurable threshold
+Frontend/backend frameworks
+Cloud evidence + timestamped timeline
+Production infrastructure
+Automatic prioritization/flagging
+Final threshold weights
+LatentCode as development agent
+Exact SkillPatch skills to install/create
+SkillPatch as reusable agent-skill layer
+Production compliance configuration
+29. Immediate Development Plan
+Start in LatentCode with the full ProctorIQ requirements.
+Ask for technology-agnostic architecture and MVP analysis.
+Review LatentCode's proposal before accepting it.
+Browse SkillPatch for relevant existing skills.
+Select or create only the skills that provide clear reusable value.
+Finalize the stack after architecture review.
+Build the MVP module by module.
+Create a polished end-to-end demo and document the LatentCode + SkillPatch workflow.

@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Candidate {
+  id              String         @id
+  name            String
+  email           String
+  avatar          String
+  testStatus      String         // 'IN_PROGRESS', 'COMPLETED'
+  riskScore       Float
+  riskLevel       String         // 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL'
+  startTime       DateTime
+  endTime         DateTime?
+  
+  events          ProctorEvent[]
+  incidents       Incident[]
+  reviewActions   ReviewAction[]
+}
+
+model ProctorEvent {
+  id                    String    @id
+  candidateId           String
+  timestamp             DateTime
+  eventType             String
+  detectorConfidence    Float
+  baseSeverity          Float
+  correlationMultiplier Float
+  riskDelta             Float
+
+  candidate             Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}
+
+model Incident {
+  id          String    @id
+  candidateId String
+  description String
+  severity    String    // 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL'
+  status      String    // 'OPEN', 'RESOLVED', 'FALSE_POSITIVE'
+  createdAt   DateTime
+  resolvedAt  DateTime?
+  
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}
+
+model ReviewAction {
+  id          String    @id
+  candidateId String
+  action      String
+  reviewerId  String
+  note        String
+  timestamp   DateTime
+  
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}

@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+=======
+>>>>>>> origin/main
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
 .yarn/install-state.gz
+=======
+.yarn/
+>>>>>>> origin/main
 
 # testing
 /coverage
@@ -16,10 +23,13 @@
 # production
 /build
 
+<<<<<<< HEAD
 # misc
 .DS_Store
 *.pem
 
+=======
+>>>>>>> origin/main
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -27,6 +37,10 @@ yarn-error.log*
 
 # local env files
 .env*.local
+<<<<<<< HEAD
+=======
+.env
+>>>>>>> origin/main
 
 # vercel
 .vercel
@@ -34,3 +48,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+<<<<<<< HEAD
+=======
+
+# OS files
+.DS_Store
+Thumbs.db
+*.bak
+>>>>>>> origin/main
