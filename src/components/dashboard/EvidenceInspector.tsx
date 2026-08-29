@@ -3,17 +3,20 @@
 import React from 'react';
 import { Candidate, IntegrityEvent } from '@/src/types';
 import { EvidenceCanvas } from '@/src/components/dashboard/EvidenceCanvas';
+import { CorrelationMatrix } from '@/src/components/dashboard/CorrelationMatrix';
 import { generateEvidenceDetails } from '@/src/utils/evidenceGenerator';
 import { ShieldCheck, AlertCircle, FileText, Cpu, Clock, Activity, Zap } from 'lucide-react';
 
 export interface EvidenceInspectorProps {
   candidate: Candidate;
   activeEvent: IntegrityEvent | null;
+  allEvents?: IntegrityEvent[];
 }
 
 export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
   candidate,
   activeEvent,
+  allEvents = [],
 }) => {
   if (!activeEvent) {
     return (
@@ -34,7 +37,7 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
   const isThresholdCrossed = activeEvent.postRiskScore >= 70;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* 2-Column Forensic Card */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Left Column: Snapshot & Visual Evidence */}
@@ -123,6 +126,9 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Multi-Signal Temporal Correlation Matrix Embedded */}
+      <CorrelationMatrix candidate={candidate} events={allEvents.length > 0 ? allEvents : [activeEvent]} />
     </div>
   );
 };

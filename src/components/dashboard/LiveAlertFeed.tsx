@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useAssessment } from '@/src/context/AssessmentContext';
 import { SeverityPill } from '@/src/components/ui/SeverityPill';
+import { LiveStreamControls } from '@/src/components/dashboard/LiveStreamControls';
 import { getEventTypeLabel, IntegrityEvent, EventType } from '@/src/types';
 import {
   Activity,
@@ -41,6 +42,12 @@ function getEventIcon(eventType: EventType) {
 
 export function LiveAlertFeed() {
   const { liveEvents, candidates, selectCandidate } = useAssessment();
+  const [streamFilter, setStreamFilter] = useState('ALL');
+
+  const filteredEvents = liveEvents.filter((e) => {
+    if (streamFilter === 'ALL') return true;
+    return e.eventType === streamFilter;
+  });
 
   const getCandidateName = (candidateId: string) => {
     const cand = candidates.find((c) => c.id === candidateId);
@@ -54,32 +61,22 @@ export function LiveAlertFeed() {
   return (
     <div id="live-anomaly-stream" className="space-y-4">
       <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md shadow-xl flex flex-col h-[760px]">
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
-            </span>
-            <h2 className="text-sm font-mono font-bold uppercase tracking-wider text-slate-100 flex items-center gap-2">
-              <Activity className="h-4 w-4 text-cyan-400" />
-              Live Security Feed
-            </h2>
-          </div>
-          <span className="rounded-full bg-cyan-950 px-2.5 py-1 text-xs font-mono font-semibold text-cyan-300 border border-cyan-800">
-            {liveEvents.length} events
-          </span>
-        </div>
+        {/* Stream Controls Bar at top */}
+        <LiveStreamControls
+          eventCount={filteredEvents.length}
+          selectedFilter={streamFilter}
+          onFilterChange={(f) => setStreamFilter(f)}
+        />
 
         {/* Stream Cards List */}
-        <div className="flex-1 overflow-y-auto pt-4 space-y-3 pr-1">
-          {liveEvents.length === 0 ? (
+        <div className="flex-1 overflow-y-auto pt-2 space-y-3 pr-1">
+          {filteredEvents.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center p-6 text-slate-500">
               <Activity className="h-10 w-10 text-slate-700 mb-2 animate-pulse" />
               <p className="text-xs font-mono">Listening for live integrity telemetry...</p>
             </div>
           ) : (
-            liveEvents.map((evt) => {
+            filteredEvents.map((evt) => {
               const candName = getCandidateName(evt.candidateId);
               const scoreDelta = evt.postRiskScore - evt.preRiskScore;
 
@@ -131,3 +128,4 @@ export function LiveAlertFeed() {
     </div>
   );
 }
+

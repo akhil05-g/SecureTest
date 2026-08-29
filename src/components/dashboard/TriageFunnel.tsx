@@ -16,6 +16,8 @@ import {
   Layers,
 } from 'lucide-react';
 
+import { DemoScenarioPicker } from '@/src/components/dashboard/DemoScenarioPicker';
+
 export function TriageFunnel({ onOpenExport }: { onOpenExport?: () => void }) {
   const { candidates, policy, filters, setFilters } = useAssessment();
 
@@ -82,6 +84,7 @@ export function TriageFunnel({ onOpenExport }: { onOpenExport?: () => void }) {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-2.5">
+          <DemoScenarioPicker />
           <button
             onClick={() => setFilters({ status: 'ALL' })}
             className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/80 px-3.5 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:border-cyan-500/40 transition-all"

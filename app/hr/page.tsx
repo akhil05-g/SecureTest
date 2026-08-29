@@ -171,6 +171,7 @@ export default function HRCommandCenter() {
               <EvidenceInspector
                 candidate={selectedCandidate}
                 activeEvent={selectedEvent}
+                allEvents={candidateEvents}
               />
 
               {/* Interactive Chronological Incident Timeline */}
