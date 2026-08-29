@@ -16,7 +16,7 @@ import {
   Layers,
 } from 'lucide-react';
 
-export function TriageFunnel() {
+export function TriageFunnel({ onOpenExport }: { onOpenExport?: () => void }) {
   const { candidates, policy, filters, setFilters } = useAssessment();
 
   // Dynamic counts derived from candidates array
@@ -103,7 +103,13 @@ export function TriageFunnel() {
             Live Incidents Stream
           </button>
           <button
-            onClick={handleExportAuditReport}
+            onClick={() => {
+              if (onOpenExport) {
+                onOpenExport();
+              } else {
+                handleExportAuditReport();
+              }
+            }}
             className="inline-flex items-center gap-2 rounded-lg border border-cyan-500/40 bg-cyan-950/40 px-3.5 py-2 text-xs font-semibold text-cyan-300 hover:bg-cyan-900/60 transition-all shadow-[0_0_12px_rgba(6,182,212,0.15)]"
           >
             <FileSpreadsheet className="h-4 w-4 text-cyan-400" />
