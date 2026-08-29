@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { ShieldCheck, Activity, Cpu } from "lucide-react";
 
 const navItems = [
-  { name: "Candidate Portal", href: "/candidate" },
   { name: "HR Command Center", href: "/hr" },
   { name: "Live Simulation", href: "/simulation" },
   { name: "Policy Settings", href: "/settings" },

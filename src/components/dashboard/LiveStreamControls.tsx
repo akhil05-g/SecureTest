@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Activity, Play, Pause, Volume2, VolumeX, SlidersHorizontal, Filter } from 'lucide-react';
+import { Activity, Play, Pause, Volume2, VolumeX, Filter } from 'lucide-react';
 
 export interface LiveStreamControlsProps {
   eventCount: number;
@@ -40,6 +40,7 @@ export const LiveStreamControls: React.FC<LiveStreamControlsProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
+            suppressHydrationWarning
             className="flex items-center gap-1 rounded bg-slate-800 hover:bg-slate-700 px-2 py-1 text-slate-200 border border-slate-700 transition-all"
           >
             {isPlaying ? <Pause className="w-3.5 h-3.5 text-amber-400" /> : <Play className="w-3.5 h-3.5 text-emerald-400" />}
@@ -49,6 +50,7 @@ export const LiveStreamControls: React.FC<LiveStreamControlsProps> = ({
           <select
             value={speed}
             onChange={(e) => setSpeed(e.target.value as '1x' | '2x' | '5x')}
+            suppressHydrationWarning
             className="rounded bg-slate-800 border border-slate-700 px-2 py-1 text-slate-200 focus:outline-none"
           >
             <option value="1x">1x Realtime</option>
@@ -58,6 +60,7 @@ export const LiveStreamControls: React.FC<LiveStreamControlsProps> = ({
 
           <button
             onClick={() => setIsMuted(!isMuted)}
+            suppressHydrationWarning
             className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all"
             title={isMuted ? 'Unmute Audio Chime' : 'Mute Audio Chime'}
           >
@@ -75,6 +78,7 @@ export const LiveStreamControls: React.FC<LiveStreamControlsProps> = ({
           <button
             key={f.key}
             onClick={() => onFilterChange(f.key)}
+            suppressHydrationWarning
             className={`rounded-md px-2.5 py-1 text-[11px] font-semibold transition-all ${
               selectedFilter === f.key
                 ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/50 shadow-[0_0_10px_rgba(6,182,212,0.2)]'
