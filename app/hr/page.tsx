@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { useAssessment } from "@/src/context/AssessmentContext";
+import { TriageFunnel } from "@/src/components/dashboard/TriageFunnel";
 import {
   Candidate,
   CandidateStatus,
@@ -53,21 +54,6 @@ export default function HRCommandCenter() {
   const [reviewerNote, setReviewerNote] = useState("");
   const [reviewerName, setReviewerName] = useState("Sarah Jenkins (HR Lead)");
   const [isGenerating1000, setIsGenerating1000] = useState(false);
-
-  // Summary Metrics
-  const metrics = useMemo(() => {
-    const total = candidates.length;
-    const autoFlagged = candidates.filter((c) => c.status === "AUTO_FLAGGED").length;
-    const highRisk = candidates.filter((c) => c.status === "HIGH_RISK").length;
-    const suspicious = candidates.filter((c) => c.status === "SUSPICIOUS").length;
-    const normal = candidates.filter((c) => c.status === "NORMAL").length;
-    const avgRisk =
-      total > 0
-        ? Math.round(candidates.reduce((acc, c) => acc + c.riskScore, 0) / total)
-        : 0;
-
-    return { total, autoFlagged, highRisk, suspicious, normal, avgRisk };
-  }, [candidates]);
 
   // Generate 1,000 Candidates Demo Dataset
   const handleLoad1000DemoData = () => {
@@ -141,137 +127,13 @@ export default function HRCommandCenter() {
 
   return (
     <div className="space-y-6 pb-12">
-      {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <ShieldAlert className="h-6 w-6 text-cyan-400" />
-            <h1 className="text-2xl font-extrabold text-slate-100 font-mono tracking-tight">
-              HR Command Center
-            </h1>
-          </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Real-time candidate monitoring matrix, risk scores & AI verification audit.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <button
-            onClick={handleLoad1000DemoData}
-            disabled={isGenerating1000}
-            className="inline-flex items-center gap-2 rounded-lg border border-cyan-500/40 bg-cyan-950/40 px-3.5 py-2 text-xs font-semibold text-cyan-300 hover:bg-cyan-900/60 transition-all shadow-[0_0_10px_rgba(6,182,212,0.15)] disabled:opacity-50"
-          >
-            <Zap className={`h-4 w-4 text-cyan-400 ${isGenerating1000 ? "animate-spin" : ""}`} />
-            {isGenerating1000 ? "Loading 1,000 Candidates..." : "Load 1,000 Demo Dataset"}
-          </button>
-        </div>
-      </div>
-
-      {/* Metrics Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        {[
-          {
-            label: "Total Candidates",
-            value: metrics.total,
-            color: "border-slate-800 text-slate-100",
-            icon: Users,
-            iconColor: "text-slate-400",
-          },
-          {
-            label: "Auto-Flagged",
-            value: metrics.autoFlagged,
-            color: "border-rose-600/40 bg-rose-950/20 text-rose-400 glow-rose",
-            icon: XCircle,
-            iconColor: "text-rose-400",
-          },
-          {
-            label: "High Risk",
-            value: metrics.highRisk,
-            color: "border-orange-500/40 bg-orange-950/20 text-orange-400",
-            icon: AlertTriangle,
-            iconColor: "text-orange-400",
-          },
-          {
-            label: "Suspicious",
-            value: metrics.suspicious,
-            color: "border-amber-500/40 bg-amber-950/20 text-amber-400 glow-amber",
-            icon: AlertTriangle,
-            iconColor: "text-amber-400",
-          },
-          {
-            label: "Normal / Clean",
-            value: metrics.normal,
-            color: "border-emerald-500/40 bg-emerald-950/20 text-emerald-400 glow-emerald",
-            icon: CheckCircle2,
-            iconColor: "text-emerald-400",
-          },
-          {
-            label: "Avg Risk Score",
-            value: `${metrics.avgRisk}%`,
-            color: "border-cyan-500/40 bg-cyan-950/20 text-cyan-300 glow-cyan",
-            icon: Activity,
-            iconColor: "text-cyan-400",
-          },
-        ].map((item, idx) => {
-          const Icon = item.icon;
-          return (
-            <div
-              key={idx}
-              className={`rounded-xl border p-3.5 bg-slate-900/60 backdrop-blur-sm transition-all ${item.color}`}
-            >
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                <span>{item.label}</span>
-                <Icon className={`h-4 w-4 ${item.iconColor}`} />
-              </div>
-              <p className="mt-2 text-2xl font-bold font-mono tracking-tight">{item.value}</p>
-            </div>
-          );
-        })}
-      </div>
+      {/* Triage Funnel Top Section & Quick Controls */}
+      <TriageFunnel />
 
       {/* Main Content Layout: Candidate Table + Live Feed Sidebar */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Candidate Table Section */}
         <div className="lg:col-span-3 space-y-4">
-          {/* Search & Filter Bar */}
-          <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-3">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-              {/* Search input */}
-              <div className="relative w-full sm:w-80">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
-                <input
-                  type="text"
-                  placeholder="Search name, email, assessment..."
-                  value={filters.search}
-                  onChange={(e) => setFilters({ search: e.target.value })}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950/80 pl-9 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
-                />
-              </div>
-
-              {/* Status Tabs */}
-              <div className="flex items-center gap-1 rounded-lg border border-slate-800 bg-slate-950/60 p-1 w-full sm:w-auto overflow-x-auto">
-                {(["ALL", "AUTO_FLAGGED", "HIGH_RISK", "SUSPICIOUS", "NORMAL"] as const).map(
-                  (st) => (
-                    <button
-                      key={st}
-                      onClick={() => {
-                        setActiveTab(st);
-                        setFilters({ status: st });
-                      }}
-                      className={`rounded px-2.5 py-1 text-xs font-semibold whitespace-nowrap transition-all ${
-                        filters.status === st
-                          ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
-                          : "text-slate-400 hover:text-slate-200"
-                      }`}
-                    >
-                      {st}
-                    </button>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-
           {/* Table Container */}
           <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm">
             <table className="w-full text-left text-xs text-slate-300">
