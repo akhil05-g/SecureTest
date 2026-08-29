@@ -1,0 +1,150 @@
+SLUG: research-deck | NAME: research-deck | DOMAINS: ['content-media', 'research']
+SUMMARY: Build a conference presentation deck from a paper. Use when a request says "make a presentation", "make slides", "make a deck", "presentation from this paper", "conference talk slides", "paper talk", "slide deck", "16:9 slides", "PowerPoint-size PDF", "slides for KDD/NeurIPS/ICML/ACL/CVPR/CHI", "spotlight talk", "lightning talk", "5 minute talk", "15 minute talk", "turn this paper into a presentation", "I'm presenting this paper", "help me present this at KDD", or supplies a paper PDF/arXiv link/DOI plus a talk length. Also use for revising an existing deck — "add a slide", "cut this to 12 minutes", "change the deck colour", "the slide is overflowing", "the title slide is too dark", "make the deck match our brand". Do NOT use for printed posters (use research-poster), or for writing the paper itself.
+
+SLUG: research-poster | NAME: research-poster | DOMAINS: ['content-media', 'research']
+SUMMARY: Build a conference research poster from a paper. Use when a request says "make a poster", "conference poster", "poster from this paper", "academic poster", "research poster", "print-ready poster", "poster PDF", "A0 poster", "A1 poster", "36x48 poster", "poster for KDD/NeurIPS/ICML/ACL/CVPR/CHI", "poster session", "my poster board is NxM", "turn this paper into a poster", or supplies a paper PDF/arXiv link/DOI plus board or print dimensions. Also use for revising an existing poster — "make the poster bigger/smaller", "fit my board", "change the poster colour", "the text is too small", "make the poster match our brand", "validate the poster against the paper". Do NOT use for slide decks or talks (use research-deck), or for writing the paper itself.
+
+SLUG: learn-from-prathosh-2 | NAME: learn-from-prathosh | DOMAINS: ['learning', 'ai-ml']
+SUMMARY: Teach a student an ML/math/generative-AI topic in the voice and derivation-structure of Prof. Prathosh A P (IISc Bangalore, NPTEL "Mathematical Foundations of Machine Learning" and IIT-M "Mathematical Foundations of Generative AI") — diagnose what they already know, teach conversationally, hand them a tight interactive HTML lesson with built-in doubt-clearing, then check what actually landed. Use when the user wants to learn or be taught a technical topic "like Prathosh sir", wants a lesson/tutorial page in his style, or asks to build/update this skill itself.
+
+SLUG: learn-from-prathosh | NAME: learn-from-prathosh | DOMAINS: ['learning', 'ai-ml']
+SUMMARY: Teach a student an ML/math/generative-AI topic in the voice and derivation-structure of Prof. Prathosh A P (IISc Bangalore, NPTEL "Mathematical Foundations of Machine Learning" and IIT-M "Mathematical Foundations of Generative AI") — diagnose what they already know, teach conversationally, hand them a tight interactive HTML lesson with built-in doubt-clearing, then check what actually landed. Use when the user wants to learn or be taught a technical topic "like Prathosh sir", wants a lesson/tutorial page in his style, or asks to build/update this skill itself.
+
+SLUG: vs-wealth-management-tax-loss-harvesting | NAME: tax-loss-harvesting | DOMAINS: ['business', 'productivity']
+SUMMARY: Identify tax-loss harvesting opportunities across taxable accounts. Finds positions with unrealized losses, suggests replacement securities, and tracks wash sale windows. Triggers on "tax-loss harvesting", "TLH", "harvest losses", "tax losses", "unrealized losses", or "year-end tax planning".
+
+SLUG: vs-wealth-management-portfolio-rebalance | NAME: portfolio-rebalance | DOMAINS: ['business', 'data']
+SUMMARY: Analyze portfolio allocation drift and generate rebalancing trade recommendations across accounts. Considers tax implications, transaction costs, and wash sale rules. Triggers on "rebalance", "portfolio drift", "allocation check", "rebalancing trades", or "my portfolio is out of balance".
+
+SLUG: vs-wealth-management-investment-proposal | NAME: investment-proposal | DOMAINS: ['business', 'content-media']
+SUMMARY: Create professional investment proposals for prospective clients. Covers the firm's approach, proposed allocation, expected outcomes, and fee structure. Use when pitching new clients or presenting a new investment strategy. Triggers on "investment proposal", "prospect presentation", "pitch new client", "proposal for [client]", or "new client presentation".
+
+SLUG: vs-wealth-management-financial-plan | NAME: financial-plan | DOMAINS: ['business', 'productivity']
+SUMMARY: Build or update a comprehensive financial plan covering retirement projections, education funding, estate planning, and cash flow analysis. Use for new client onboarding, annual plan reviews, or scenario modeling. Triggers on "financial plan", "retirement plan", "can I retire", "education funding", "estate plan", "cash flow analysis", or "plan update".
+
+SLUG: vs-wealth-management-client-review | NAME: client-review | DOMAINS: ['business', 'productivity']
+SUMMARY: Prepare for client review meetings with portfolio performance summary, allocation analysis, talking points, and action items. Pulls together account data into a concise meeting-ready format. Use before quarterly reviews, annual checkups, or ad-hoc client meetings. Triggers on "client review", "meeting prep for [client]", "quarterly review", "prep for [client name]", or "client meeting".
+
+SLUG: vs-wealth-management-client-report | NAME: client-report | DOMAINS: ['business', 'content-media']
+SUMMARY: Generate professional client-facing performance reports with portfolio returns, allocation breakdowns, and market commentary. Suitable for quarterly or annual distribution. Triggers on "client report", "performance report", "quarterly report for [client]", "generate reports", or "client statement".
+
+SLUG: vs-private-equity-value-creation-plan | NAME: value-creation-plan | DOMAINS: ['business', 'productivity']
+SUMMARY: Structure post-acquisition value creation plans with revenue, cost, and operational levers mapped to an EBITDA bridge. Includes 100-day priorities, KPI targets, and accountability frameworks. Use when planning post-close execution, preparing operating partner materials, or building a board-ready value creation roadmap. Triggers on "value creation plan", "100-day plan", "post-close plan", "EBITDA bridge", "operating plan", or "value creation levers".
+
+SLUG: vs-private-equity-unit-economics | NAME: unit-economics | DOMAINS: ['business', 'data']
+SUMMARY: Analyze unit economics for PE targets — ARR cohorts, LTV/CAC, net retention, payback periods, revenue quality, and margin waterfall. Essential for software/SaaS, recurring revenue, and subscription businesses. Use when evaluating revenue quality, building a cohort analysis, or assessing customer economics. Triggers on "unit economics", "cohort analysis", "ARR analysis", "LTV CAC", "net retention", "revenue quality", or "customer economics".
+
+SLUG: vs-private-equity-returns-analysis | NAME: returns-analysis | DOMAINS: ['business', 'data']
+SUMMARY: Build quick IRR/MOIC sensitivity tables for PE deal evaluation. Models returns across entry multiple, leverage, exit multiple, growth, and hold period scenarios. Use when sizing up a deal, stress-testing assumptions, or preparing IC returns exhibits. Triggers on "returns analysis", "IRR sensitivity", "MOIC table", "what's the return at", "model the returns", or "back of the envelope".
+
+SLUG: vs-private-equity-portfolio-monitoring | NAME: portfolio-monitoring | DOMAINS: ['data', 'business']
+SUMMARY: Track and analyze portfolio company performance against plan. Ingests monthly/quarterly financial packages (Excel, PDF), extracts KPIs, flags variances to budget, and produces summary dashboards. Use when reviewing portfolio company financials, preparing board materials, or monitoring covenant compliance. Triggers on "review portfolio company", "monthly financials", "how is [company] performing", "covenant check", or "portfolio update".
+
+SLUG: vs-private-equity-ic-memo | NAME: ic-memo | DOMAINS: ['business', 'documentation']
+SUMMARY: Draft a structured investment committee memo for PE deal approval. Synthesizes due diligence findings, financial analysis, and deal terms into a professional IC-ready document. Use when preparing for investment committee, writing up a deal, or creating a formal recommendation. Triggers on "write IC memo", "investment committee memo", "deal write-up", "prepare IC materials", or "recommendation memo".
+
+SLUG: vs-private-equity-deal-sourcing | NAME: deal-sourcing | DOMAINS: ['business', 'productivity']
+SUMMARY: PE deal sourcing workflow — discover target companies, check CRM for existing relationships, and draft personalized founder outreach emails. Use when sourcing new deals, prospecting companies in a sector, or reaching out to founders. Triggers on "find companies", "source deals", "draft founder email", "check if we've seen this company", or "outreach to founder".
+
+SLUG: vs-private-equity-deal-screening | NAME: deal-screening | DOMAINS: ['business', 'data']
+SUMMARY: Quickly screen inbound deal flow — CIMs, teasers, and broker materials — against the fund's investment criteria. Extracts key deal metrics, runs a pass/fail framework, and outputs a one-page screening memo. Use when reviewing new deal flow, triaging inbound materials, or deciding whether to take a first call. Triggers on "screen this deal", "review this CIM", "should we look at this", "triage this teaser", or "deal screening".
+
+SLUG: vs-private-equity-dd-meeting-prep | NAME: dd-meeting-prep | DOMAINS: ['business', 'productivity']
+SUMMARY: Prepare for due diligence meetings — management presentations, expert network calls, customer references, and advisor sessions. Generates targeted question lists, benchmarks to reference, and red flags to probe. Use before any diligence meeting or call. Triggers on "prep for management meeting", "diligence call prep", "expert call questions", "customer reference questions", or "meeting prep for [company]".
+
+SLUG: vs-private-equity-dd-checklist | NAME: dd-checklist | DOMAINS: ['business', 'productivity']
+SUMMARY: Generate and track comprehensive due diligence checklists tailored to the target company's sector, deal type, and complexity. Covers all major workstreams with request lists, status tracking, and red flag escalation. Use when kicking off diligence, organizing a data room review, or tracking outstanding items. Triggers on "dd checklist", "due diligence tracker", "diligence request list", "what do we still need", or "data room review".
+
+SLUG: vs-private-equity-ai-readiness | NAME: ai-readiness | DOMAINS: ['business', 'ai-ml']
+SUMMARY: Scan the portfolio for the highest-leverage AI opportunities and rank where to deploy operating-partner time. Ingests quarterly updates and financials across multiple portfolio companies, identifies quick wins at each, and stacks them into a single ranked action list. Use during quarterly portfolio reviews, annual planning, or when deciding which companies get AI investment first. Triggers on "AI readiness", "AI opportunity scan", "where should we deploy AI", "AI across the portfolio", "AI quick wins", or "which portcos are ready for AI".
+
+SLUG: vs-operations-kyc-rules | NAME: kyc-rules | DOMAINS: ['business', 'data']
+SUMMARY: Apply the firm's KYC/AML rules grid to a parsed onboarding record — assign a risk rating, list every rule outcome with the rule cited, and flag what's missing or escalation-worthy. Use after kyc-doc-parse; this skill decides nothing, it scores and routes.
+
+SLUG: vs-investment-banking-teaser | NAME: teaser | DOMAINS: ['business', 'documentation']
+SUMMARY: Draft anonymous one-page company teasers for sell-side M&A processes. Creates a compelling summary without revealing the company's identity, designed to gauge buyer interest before NDA execution. Triggers on "teaser", "blind teaser", "anonymous profile", "one-pager for process", or "draft teaser for sell-side".
+
+SLUG: vs-investment-banking-process-letter | NAME: process-letter | DOMAINS: ['business', 'documentation']
+SUMMARY: Draft process letters and bid instructions for sell-side M&A processes. Covers initial indication of interest (IOI) instructions, final bid procedures, and management meeting logistics. Triggers on "process letter", "bid instructions", "IOI letter", "bid procedures", "final round letter", or "management meeting invite".
+
+SLUG: vs-investment-banking-pitch-deck | NAME: pitch-deck | DOMAINS: ['business', 'productivity']
+SUMMARY: Populates investment banking pitch deck templates with data from source files. Use when: user provides a PowerPoint template to fill in, user has source data (Excel/CSV) to populate into slides, user mentions populating or filling a pitch deck template, or user needs to transfer data into existing slide layouts. Not for creating presentations from scratch.
+
+SLUG: vs-investment-banking-merger-model | NAME: merger-model | DOMAINS: ['business', 'data']
+SUMMARY: Build accretion/dilution analysis for M&A transactions. Models pro forma EPS impact, synergy sensitivities, and purchase price allocation. Use when evaluating a potential acquisition, preparing merger consequences analysis for a pitch, or advising on deal terms. Triggers on "merger model", "accretion dilution", "M&A model", "pro forma EPS", "merger consequences", or "deal impact analysis".
+
+SLUG: vs-investment-banking-deal-tracker | NAME: deal-tracker | DOMAINS: ['business', 'productivity']
+SUMMARY: Track multiple live deals with milestones, deadlines, action items, and status updates. Maintains a deal pipeline view and surfaces upcoming deadlines and overdue items. Use when managing a book of business, tracking process milestones, or preparing for weekly deal reviews. Triggers on "deal tracker", "deal status", "where are we on", "process update", "deal pipeline", or "weekly deal review".
+
+SLUG: vs-investment-banking-datapack-builder | NAME: datapack-builder | DOMAINS: ['data', 'business']
+SUMMARY: Build professional financial services data packs from various sources including CIMs, offering memorandums, SEC filings, web search, or MCP servers. Extract, normalize, and standardize financial data into investment committee-ready Excel workbooks with consistent structure, proper formatting, and documented assumptions. Use for M&A due diligence, private equity analysis, investment committee materials, and standardizing financial reporting across portfolio companies. Do not use for simple financial calculations or working with already-completed data packs.
+
+SLUG: vs-investment-banking-cim-builder | NAME: cim-builder | DOMAINS: ['business', 'documentation']
+SUMMARY: Structure and draft a Confidential Information Memorandum for sell-side M&A processes. Organizes company information into a professional, investor-ready document with consistent formatting and narrative flow. Use when preparing sell-side materials, drafting a CIM, or organizing company data for a sale process. Triggers on "CIM", "confidential information memorandum", "offering memorandum", "info memo", "draft CIM", or "sell-side materials".
+
+SLUG: vs-investment-banking-buyer-list | NAME: buyer-list | DOMAINS: ['business', 'research']
+SUMMARY: Build and organize a universe of potential acquirers for sell-side M&A processes. Identifies strategic and financial buyers, assesses fit, and prioritizes outreach. Use when preparing for a sell-side mandate, building a buyer universe, or evaluating potential partners. Triggers on "buyer list", "buyer universe", "potential acquirers", "who would buy this", "strategic buyers", or "financial sponsors".
+
+SLUG: vs-fund-admin-variance-commentary | NAME: variance-commentary | DOMAINS: ['business', 'documentation']
+SUMMARY: Write flux commentary for every P&L and balance-sheet line over threshold — current vs prior period and vs budget, with the driver explained from underlying activity. Use for the month-end close package and management reporting.
+
+SLUG: vs-fund-admin-roll-forward | NAME: roll-forward | DOMAINS: ['data', 'business']
+SUMMARY: Build a roll-forward schedule for a balance-sheet account — beginning balance plus activity less reversals equals ending balance, with each component tied to GL. Use for month-end close packages and audit support.
+
+SLUG: vs-fund-admin-nav-tieout | NAME: nav-tieout | DOMAINS: ['data', 'business']
+SUMMARY: Tie an LP statement to the fund's NAV pack — recompute the LP's capital account from the NAV components and flag any line that doesn't agree. Use before LP statements are distributed.
+
+SLUG: vs-fund-admin-gl-recon | NAME: gl-recon | DOMAINS: ['data', 'business']
+SUMMARY: Reconcile general ledger to subledger for a trade date or period — match at the position or transaction level, surface breaks, and classify each break by likely cause. Use for daily or month-end recon runs across asset classes.
+
+SLUG: vs-fund-admin-break-trace | NAME: break-trace | DOMAINS: ['data', 'business']
+SUMMARY: Root-cause a reconciliation break to its source transaction or posting — follow the audit trail from the break row back to the originating entry on each side and state what differs and why. Use after gl-recon has classified a break.
+
+SLUG: vs-fund-admin-accrual-schedule | NAME: accrual-schedule | DOMAINS: ['business', 'data']
+SUMMARY: Build the period-end accrual schedule — for each accrual, compute the entry, cite the support, and draft the JE. Use during month-end close; the JE is a draft for controller approval, not a posting.
+
+SLUG: vs-financial-analysis-xlsx-author | NAME: xlsx-author | DOMAINS: ['development', 'productivity']
+SUMMARY: Produce a .xlsx file on disk (headless) instead of driving a live Excel workbook — for managed-agent sessions with no open Office app.
+
+SLUG: vs-financial-analysis-skill-creator | NAME: skill-creator | DOMAINS: ['documentation', 'learning']
+SUMMARY: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
+
+SLUG: vs-financial-analysis-pptx-author | NAME: pptx-author | DOMAINS: ['content-media', 'development']
+SUMMARY: Produce a .pptx file on disk (headless) instead of driving a live PowerPoint document — for managed-agent sessions with no open Office app.
+
+SLUG: vs-financial-analysis-ppt-template-creator | NAME: ppt-template-creator | DOMAINS: ['development', 'tools']
+SUMMARY: Creates self-contained PPT template SKILLS (not presentations) from user-provided PowerPoint templates. Use ONLY when a user wants to create a reusable skill from their template. For creating actual presentations, use the pptx skill instead.
+
+SLUG: vs-financial-analysis-ib-check-deck | NAME: ib-check-deck | DOMAINS: ['business', 'productivity']
+SUMMARY: Investment banking presentation quality checker. Reviews a pitch deck or client-ready presentation for (1) number consistency across slides, (2) data-narrative alignment, (3) language polish against IB standards, (4) visual and formatting QC. Use whenever the user asks to review, check, QC, proof, or do a final pass on a deck, pitch, or client materials — including requests like "check my numbers", "reconcile figures across slides", "is this client-ready", or "what am I missing before I send this out".
+
+SLUG: vs-financial-analysis-deck-refresh | NAME: deck-refresh | DOMAINS: ['productivity', 'business']
+SUMMARY: Updates a presentation with new numbers — quarterly refreshes, earnings updates, comp rolls, rebased market data. Use whenever the user asks to "update the deck with Q4 numbers", "refresh the comps", "roll this forward", "swap in the new earnings", "change all the $485M to $512M", or any request to swap figures across an existing deck without rebuilding it.
+
+SLUG: vs-financial-analysis-dcf-model | NAME: dcf-model | DOMAINS: ['business', 'data']
+SUMMARY: Real DCF (Discounted Cash Flow) model creation for equity valuation. Retrieves financial data from SEC filings and analyst reports, builds comprehensive cash flow projections with proper WACC calculations, performs sensitivity analysis, and outputs professional Excel models with executive summaries. Use when users need to value a company using DCF methodology, request intrinsic value analysis, or ask for detailed financial modeling with growth projections and terminal value calculations.
+
+SLUG: vs-financial-analysis-competitive-analysis | NAME: competitive-analysis | DOMAINS: ['business', 'research']
+SUMMARY: Framework for building competitive landscape decks — market positioning, competitor deep-dives, comparative analysis, strategic synthesis. Use when the user asks for a competitive landscape, competitor analysis, peer comparison, market positioning assessment, strategic review, or investment memo deck. Also triggers on "who are the competitors to X", "benchmark X against peers", "build a market map", or any request to systematically evaluate competitive dynamics across an industry.
+
+SLUG: vs-financial-analysis-clean-data-xls | NAME: clean-data-xls | DOMAINS: ['data', 'tools']
+SUMMARY: Clean up messy spreadsheet data — trim whitespace, fix inconsistent casing, convert numbers-stored-as-text, standardize dates, remove duplicates, and flag mixed-type columns. Use when data is messy, inconsistent, or needs prep before analysis. Triggers on "clean this data", "clean up this sheet", "normalize this data", "fix formatting", "dedupe", "standardize this column", "this data is messy".
+
+SLUG: vs-financial-analysis-audit-xls | NAME: audit-xls | DOMAINS: ['data', 'testing']
+SUMMARY: Audit a spreadsheet for formula accuracy, errors, and common mistakes. Scopes to a selected range, a single sheet, or the entire model (including financial-model integrity checks like BS balance, cash tie-out, and logic sanity). Triggers on "audit this sheet", "check my formulas", "find formula errors", "QA this spreadsheet", "sanity check this", "debug model", "model check", "model won't balance", "something's off in my model", "model review".
+
+SLUG: vs-financial-analysis-3-statement-model | NAME: 3-statement-model | DOMAINS: ['data', 'business']
+SUMMARY: Complete, populate and fill out 3-statement financial model templates (Income Statement, Balance Sheet, Cash Flow Statement) . Use when asked to fill out model templates, complete existing model frameworks, populate financial models with data, complete a partially filled IS/BS/CF framework, or link integrated financial statements within an existing template structure. Triggers include requests to fill in, complete, or populate a 3-statement model template
+
+SLUG: vs-equity-research-thesis-tracker | NAME: thesis-tracker | DOMAINS: ['business', 'research']
+SUMMARY: Maintain and update investment theses for portfolio positions and watchlist names. Track key data points, catalysts, and thesis milestones over time. Use when updating a thesis with new information, reviewing position rationale, or checking if a thesis is still intact. Triggers on "update thesis for [company]", "is my thesis still intact", "thesis check", "add data point to [company]", or "review my positions".
+
+SLUG: vs-equity-research-sector-overview | NAME: sector-overview | DOMAINS: ['research', 'business']
+SUMMARY: Create comprehensive industry and sector landscape reports covering market dynamics, competitive positioning, key players, and thematic trends. Use for client requests, sector initiations, thematic research pieces, or internal knowledge building. Triggers on "sector overview", "industry report", "market landscape", "sector analysis", "industry deep dive", or "thematic research".
+
+SLUG: vs-equity-research-morning-note | NAME: morning-note | DOMAINS: ['business', 'research']
+SUMMARY: Draft concise morning meeting notes summarizing overnight developments, trade ideas, and key events for coverage stocks. Designed for the 7am morning meeting format — tight, opinionated, actionable. Triggers on "morning note", "morning meeting", "what happened overnight", "trade idea", "morning call prep", or "daily note".
+
+SLUG: vs-equity-research-model-update | NAME: model-update | DOMAINS: ['data', 'business']
+SUMMARY: Update financial models with new data — quarterly earnings, management guidance, macro changes, or revised assumptions. Adjusts estimates, recalculates valuation, and flags material changes. Use after earnings, guidance updates, or when assumptions need refreshing. Triggers on "update model", "plug earnings", "refresh estimates", "update numbers for [company]", "new guidance", or "revise estimates".
+
