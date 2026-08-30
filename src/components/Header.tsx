@@ -1,19 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ShieldCheck, Activity } from "lucide-react";
 
-const navItems = [
-  { name: "HR Command Center", href: "/hr" },
-  { name: "Live Simulation", href: "/simulation" },
-  { name: "Policy Settings", href: "/settings" },
-  { name: "Admin Portal", href: "/admin" },
-];
-
 export default function Header() {
-  const pathname = usePathname();
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
@@ -39,26 +29,6 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Navigation Tabs */}
-        <nav className="hidden md:flex items-center gap-1 rounded-lg border border-slate-800/80 bg-slate-900/60 p-1">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`rounded-md px-3.5 py-1.5 text-xs font-semibold transition-all ${
-                  isActive
-                    ? "bg-cyan-500/15 text-cyan-400 border border-cyan-500/40 shadow-[0_0_10px_rgba(6,182,212,0.25)]"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
-                }`}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
-        </nav>
-
         {/* System Health Indicator */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/30 px-3 py-1 text-xs text-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.15)]">
@@ -72,24 +42,6 @@ export default function Header() {
             </span>
           </div>
         </div>
-      </div>
-
-      {/* Mobile Nav Sub-bar */}
-      <div className="md:hidden border-t border-slate-800/60 bg-slate-900/40 px-4 py-2 flex items-center justify-around overflow-x-auto">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`whitespace-nowrap px-2.5 py-1 text-xs font-medium rounded ${
-                isActive ? "text-cyan-400 bg-cyan-950/60 font-semibold" : "text-slate-400"
-              }`}
-            >
-              {item.name}
-            </Link>
-          );
-        })}
       </div>
     </header>
   );

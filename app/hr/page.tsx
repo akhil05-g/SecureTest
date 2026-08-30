@@ -12,7 +12,7 @@ import { AuditExportModal } from '@/components/dashboard/AuditExportModal';
 import { IntegrityAnalytics } from '@/components/dashboard/IntegrityAnalytics';
 import { QuickReviewBar } from '@/components/dashboard/QuickReviewBar';
 import { useInvestigationShortcuts } from '@/hooks/useInvestigationShortcuts';
-import { IntegrityEvent, getStatusBadgeColor } from '@/types';
+import { IntegrityEvent, getStatusBadgeColor, EventType } from '@/types';
 import { X, BarChart2, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function HRCommandCenter() {

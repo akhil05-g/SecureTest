@@ -13,9 +13,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
   Zap,
-  RotateCcw,
 } from "lucide-react";
-import { DemoScenarioPicker } from "@/components/dashboard/DemoScenarioPicker";
 
 function renderViolationPills(candidate: { recentViolations: EventType[]; totalViolations: number }) {
   if (!candidate.recentViolations || candidate.recentViolations.length === 0) {
@@ -208,16 +206,6 @@ export function CandidateTable() {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-2">
-            <DemoScenarioPicker />
-            <button
-              type="button"
-              onClick={handleLoad1000DemoData}
-              disabled={isGenerating}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-950/40 px-3 py-1.5 text-xs font-semibold text-cyan-300 hover:bg-cyan-900/60 transition-all disabled:opacity-50"
-            >
-              <Zap className={`h-3.5 w-3.5 text-cyan-400 ${isGenerating ? "animate-spin" : ""}`} />
-              {isGenerating ? "Generating..." : "Load 1,000 Dataset"}
-            </button>
           </div>
         </div>
 

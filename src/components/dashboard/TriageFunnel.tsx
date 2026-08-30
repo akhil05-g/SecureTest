@@ -11,7 +11,6 @@ import {
   FileSpreadsheet,
   Shield,
 } from "lucide-react";
-import { DemoScenarioPicker } from "@/components/dashboard/DemoScenarioPicker";
 
 export function TriageFunnel({ onOpenExport }: { onOpenExport?: () => void }) {
   const { candidates, policy, filters, setFilters } = useAssessment();
@@ -50,7 +49,6 @@ export function TriageFunnel({ onOpenExport }: { onOpenExport?: () => void }) {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-2">
-          <DemoScenarioPicker />
           <button
             type="button"
             onClick={() => {

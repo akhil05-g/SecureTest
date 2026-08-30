@@ -689,7 +689,7 @@ export default function StudentPortalPage() {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Alex Morgan"
+                  placeholder="Enter your full name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-colors"
@@ -704,7 +704,7 @@ export default function StudentPortalPage() {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. alex.morgan@university.edu or 2025-CS-102"
+                  placeholder="Enter email address or roll number"
                   value={emailOrRoll}
                   onChange={(e) => setEmailOrRoll(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-colors"
@@ -719,13 +719,13 @@ export default function StudentPortalPage() {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. SECURE2025"
+                  placeholder="Enter exam passkey"
                   value={passkey}
                   onChange={(e) => setPasskey(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-sm font-mono tracking-wider text-slate-100 placeholder-slate-600 uppercase focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-colors"
                 />
               </div>
-              <p className="text-xs text-slate-500 mt-1">Enter your assigned exam passkey (e.g., <code className="text-cyan-400 font-mono">SECURE2025</code>)</p>
+              <p className="text-xs text-slate-500 mt-1">Enter the passkey provided by your assessment administrator.</p>
             </div>
 
             <button
