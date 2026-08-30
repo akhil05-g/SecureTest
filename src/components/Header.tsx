@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShieldCheck, Activity, Cpu } from "lucide-react";
+import { ShieldCheck, Activity } from "lucide-react";
 
 const navItems = [
   { name: "HR Command Center", href: "/hr" },
   { name: "Live Simulation", href: "/simulation" },
   { name: "Policy Settings", href: "/settings" },
+  { name: "Admin Portal", href: "/admin" },
 ];
 
 export default function Header() {

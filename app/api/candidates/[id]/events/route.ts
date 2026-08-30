@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/store';
-import { PolicyConfig } from '@/lib/types';
+import { PolicyConfig, ProctorEvent } from '@/lib/types';
 import { calculateCumulativeRisk, evaluateThreshold } from '@/lib/risk-engine';
 
 const defaultPolicy: PolicyConfig = {

@@ -58,3 +58,32 @@ model ReviewAction {
   
   candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
 }
+
+model ExamConfig {
+  id          String    @id
+  title       String
+  duration    Int       // duration in minutes
+  passkey     String    // exam passkey students must enter
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  sections    ExamSection[]
+}
+
+model ExamSection {
+  id          String    @id
+  examId      String
+  name        String
+  sortOrder   Int
+  questions   ExamQuestion[]
+  exam        ExamConfig @relation(fields: [examId], references: [id], onDelete: Cascade)
+}
+
+model ExamQuestion {
+  id            String    @id
+  sectionId     String
+  question      String
+  options       String    // JSON stringified array of option strings
+  correctIndex  Int       // index of the correct option (0-based)
+  sortOrder     Int
+  section       ExamSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+}

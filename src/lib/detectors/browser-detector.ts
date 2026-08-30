@@ -133,17 +133,6 @@ export class BrowserDetector {
         isOpen = true;
       }
 
-      // Method B: Debugger timing detection
-      const start = performance.now();
-      // eslint-disable-next-line no-debugger
-      debugger; 
-      const end = performance.now();
-      
-      // If debugger is open, the execution pauses, so the delta is unusually large
-      if (end - start > 100) {
-        isOpen = true;
-      }
-
       if (isOpen && !this.devtoolsOpen) {
         this.emitEvent(EventType.DEVTOOLS_OPEN, 95, 9);
       }

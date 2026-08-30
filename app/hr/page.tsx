@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useAssessment } from '@/context/AssessmentContext';
 import { TriageFunnel } from '@/components/dashboard/TriageFunnel';
 import { CandidateTable } from '@/components/dashboard/CandidateTable';
@@ -21,11 +21,80 @@ export default function HRCommandCenter() {
     selectCandidate,
     liveEvents,
     recordReviewerAction,
+    loadCandidates,
   } = useAssessment();
 
   const [selectedEvent, setSelectedEvent] = useState<IntegrityEvent | null>(null);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
+
+  // 2-Second Live Telemetry Polling Cycle
+  useEffect(() => {
+    const pollInterval = setInterval(async () => {
+      try {
+        const res = await fetch('/api/candidates');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data)) {
+            const mapped = data.map((c: Record<string, unknown>) => {
+              const rawEvents = (c.events as Record<string, unknown>[]) || [];
+              const totalViolations = rawEvents.length;
+
+              // Map most recent 5 events
+              const recentViolations = rawEvents.slice(-5).reverse().map((evt) => {
+                const eventType = (evt.eventType as string) || 'UNKNOWN_EVENT';
+                const detectorConfidence = (evt.detectorConfidence as number) || 80;
+                const baseSeverity = (evt.baseSeverity as number) || 5;
+
+                let severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' = 'LOW';
+                if (baseSeverity >= 8) severity = 'CRITICAL';
+                else if (baseSeverity >= 6) severity = 'HIGH';
+                else if (baseSeverity >= 4) severity = 'MEDIUM';
+
+                return {
+                  id: (evt.id as string) || `evt-${Date.now()}`,
+                  candidateId: c.id as string,
+                  eventType: eventType as EventType,
+                  severity,
+                  confidence: detectorConfidence,
+                  timestamp: evt.timestamp ? new Date(evt.timestamp as string).toTimeString().split(' ')[0] : new Date().toTimeString().split(' ')[0],
+                  preRiskScore: 0,
+                  postRiskScore: Math.min(100, Math.round((c.riskScore as number) || 0)),
+                };
+              });
+
+              return {
+                id: c.id as string,
+                name: c.name as string,
+                email: c.email as string,
+                avatar: (c.avatar as string) || '',
+                assessmentTitle: 'Enterprise Assessment',
+                status: mapRiskLevelToStatus(c.riskLevel as string, c.riskScore as number),
+                riskScore: Math.min(100, Math.round((c.riskScore as number) || 0)),
+                startedAt: c.startTime ? new Date(c.startTime as string).toISOString() : new Date().toISOString(),
+                completedAt: c.endTime ? new Date(c.endTime as string).toISOString() : undefined,
+                totalViolations,
+                recentViolations: recentViolations.map((v) => v.eventType),
+                auditTrail: [],
+              };
+            });
+            loadCandidates(mapped);
+          }
+        }
+      } catch (err) {
+        console.error('Polling error:', err);
+      }
+    }, 2000);
+
+    return () => clearInterval(pollInterval);
+  }, [loadCandidates]);
+
+  function mapRiskLevelToStatus(riskLevel: string, riskScore: number) {
+    if (riskLevel === 'CRITICAL' || riskScore >= 70) return 'AUTO_FLAGGED' as const;
+    if (riskLevel === 'HIGH' || riskScore >= 55) return 'HIGH_RISK' as const;
+    if (riskLevel === 'MEDIUM' || riskScore >= 40) return 'SUSPICIOUS' as const;
+    return 'NORMAL' as const;
+  }
 
   // Selected candidate's events
   const candidateEvents = useMemo(() => {

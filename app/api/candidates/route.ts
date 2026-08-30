@@ -5,7 +5,8 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const candidatesList = await prisma.candidate.findMany({
-    orderBy: { riskScore: 'desc' }
+    orderBy: { riskScore: 'desc' },
+    include: { events: true }
   });
   
   return NextResponse.json(candidatesList);

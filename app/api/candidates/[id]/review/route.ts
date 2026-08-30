@@ -34,17 +34,25 @@ export async function POST(
     });
     
     let newStatus = candidate.testStatus;
+    let endTimeValue: Date | undefined = undefined;
+
     if (body.action === 'CONFIRM' || body.action === 'CONFIRM_FLAG') {
       newStatus = 'AUTO_FLAGGED';
     } else if (body.action === 'DISMISS' || body.action === 'DISMISS_FLAG') {
       newStatus = 'NORMAL';
     } else if (body.action === 'ESCALATE') {
       newStatus = 'HIGH_RISK';
+    } else if (body.action === 'COMPLETE') {
+      newStatus = 'COMPLETED';
+      endTimeValue = new Date();
     }
 
     await prisma.candidate.update({
       where: { id },
-      data: { testStatus: newStatus }
+      data: {
+        testStatus: newStatus,
+        ...(endTimeValue ? { endTime: endTimeValue } : {})
+      }
     });
     
     return NextResponse.json(reviewAction, { status: 201 });

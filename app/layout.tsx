@@ -6,6 +6,7 @@ import { Providers } from "@/components/Providers";
 export const metadata: Metadata = {
   title: "SecureTest | Cyber-Defense Proctoring Platform",
   description: "Monitor. Detect. Review. Next-gen AI proctoring and candidate assessment suite.",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
